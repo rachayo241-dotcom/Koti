@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>💖 كوتي كوتي أمور</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffe6f0, #fff0f5);
+    font-family: Arial, sans-serif;
+    color: #ff3366;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  /* صندوق الدخول */
+  #login, #content {
+    position: absolute;
+    z-index: 10;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+
+  input, button {
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+  }
+
+  button {
+    background: #ff5c8a;
+    color: white;
+    cursor: pointer;
+    border: none;
+  }
+
+  h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 22px;
+  }
+
+  /* القلوب */
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    clip-path: polygon(50% 0%, 61% 14%, 75% 14%, 85% 25%, 85% 40%, 75% 50%, 50% 80%, 25% 50%, 15% 40%, 15% 25%, 25% 14%, 39% 14%);
+    animation: float 5s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); }
+    100% { transform: translateY(-800px) translateX(50px) rotate(360deg); }
+  }
+
+  /* البطاريق */
+  .penguin {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: pink;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: dance 4s infinite alternate ease-in-out, fly linear infinite;
+  }
+
+  @keyframes dance {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(15deg); }
+    100% { transform: rotate(-15deg); }
+  }
+
+  @keyframes fly {
+    0% { top: 100%; left: 0; }
+    100% { top: -100px; left: 100vw; }
+  }
+
+  /* النجوم */
+  .star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+  }
+
+  @keyframes twinkle {
+    from { opacity: 0.2; }
+    to { opacity: 1; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- الدخول بكلمة السر -->
+<div id="login">
+  <h1>🔒 دخّل كلمة السر</h1>
+  <input type="password" id="password" placeholder="كلمة السر">
+  <br>
+  <button onclick="checkPassword()">دخول 💗</button>
+</div>
+
+<!-- المحتوى بعد الدخول -->
+<div id="content" style="display:none;">
+  <h1>يا كوتي كوتي أمور 🐣💗</h1>
+  <p>مخك نايم شوي بس كيوت 😌</p>
+  <audio id="music" autoplay loop>
+    <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Scott_Holmes_Music/Happy_Music/Scott_Holmes_Music_-_04_-_Happy_Whistle.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<script>
+  // كلمة السر
+  function checkPassword() {
+    const correctPassword = "1234"; // ✨ غيّري كلمة السر
+    const entered = document.getElementById("password").value;
+    if (entered === correctPassword) {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("content").style.display = "block";
+      document.getElementById("music").play();
+      startHearts();
+      startPenguins();
+      startStars();
+    } else {
+      alert("غلط يا كتكوت 🐣😂");
+    }
+  }
+
+  // القلوب
+  function startHearts() {
+    for(let i=0;i<20;i++){
+      const heart = document.createElement('div');
+      heart.className='heart';
+      heart.style.left = Math.random()*100+'vw';
+      heart.style.animationDuration = (3+Math.random()*5)+'s';
+      document.body.appendChild(heart);
+    }
+  }
+
+  // البطاريق
+  function startPenguins() {
+    for(let i=0;i<5;i++){
+      const penguin = document.createElement('div');
+      penguin.className='penguin';
+      penguin.style.top = 100 + Math.random()*200 + 'px';
+      penguin.style.left = Math.random()*window.innerWidth+'px';
+      penguin.style.animationDuration = (4 + Math.random()*4)+'s, ' + (10+Math.random()*10)+'s';
+      document.body.appendChild(penguin);
+    }
+  }
+
+  // النجوم
+  function startStars() {
+    for(let i=0;i<50;i++){
+      const star = document.createElement('div');
+      star.className='star';
+      star.style.top = Math.random()*100+'vh';
+      star.style.left = Math.random()*100+'vw';
+      star.style.width = star.style.height = (1+Math.random()*3)+'px';
+      document.body.appendChild(star);
+    }
+  }
+</script>
+
+</body>
+</html>
